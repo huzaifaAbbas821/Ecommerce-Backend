@@ -30,10 +30,10 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Image is missing");
   }
 
-  const image = await uploadCloudinary(imageLocalPath);
-  if (!image) {
-    throw new ApiError(500, "Issue while uploading");
-  }
+  // const image = await uploadCloudinary(imageLocalPath);
+  // if (!image) {
+  //   throw new ApiError(500, "Issue while uploading");
+  // }
 
   // fs.unlink(imageLocalPath, (err) => {
   //   if (err) {
