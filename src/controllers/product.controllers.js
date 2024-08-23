@@ -28,6 +28,7 @@ const createProduct = asyncHandler(async (req, res) => {
   if (!req.file) {
     throw new ApiError(400, "Image is missing");
   }
+  console.log(req.file)
 
   const imageBuffer = req.file.buffer; // Get the file buffer from memory
 
