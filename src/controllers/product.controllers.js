@@ -25,10 +25,26 @@ const createProduct = asyncHandler(async (req, res) => {
     throw new ApiError(400, "Data missing");
   }
 
-  const imageLocalPath = req.file?.path;
-  if (!imageLocalPath) {
+  if (!req.file) {
     throw new ApiError(400, "Image is missing");
   }
+
+  const imageBuffer = req.file.buffer; // Get the file buffer from memory
+
+  const uploadOptions = {
+    resource_type: "auto",
+    // folder: "your_folder_name", // Optionally, specify a folder in Cloudinary
+  };
+
+  const image = await cloudinary.uploader.upload_stream(uploadOptions, (error, result) => {
+    if (error) throw new ApiError(500, "Issue while uploading to Cloudinary");
+    return result;
+  }).end(imageBuffer);
+
+  if (!image) {
+    throw new ApiError(500, "Issue while uploading");
+  }
+
 
   // const image = await uploadCloudinary(imageLocalPath);
   // if (!image) {
