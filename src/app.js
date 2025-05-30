@@ -11,7 +11,7 @@ const  app = express();
 app.use(cookieParser());
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
+    origin: "https://ecommerce-coral-two.vercel.app",
     credentials: true
 }))
 
