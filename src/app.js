@@ -2,6 +2,10 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors"
 import { env } from 'node:process';
+import dotenv from "dotenv"; // <-- important!
+
+// Load environment variables
+dotenv.config(); // <-- Load .env variables
 const  app = express();
 
 app.use(cookieParser());
