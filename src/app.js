@@ -6,18 +6,10 @@ const  app = express();
 
 app.use(cookieParser());
 
-const allowedOrigins = process.env.CORS_ORIGIN?.split(',') || [];
-
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
-  credentials: true,
-}));
+    origin:process.env.CORS_ORIGIN,
+    credentials: true
+}))
 
 app.use(express.json({limit:"16kb"}));
 app.use(express.urlencoded({extended:true, limit: "16kb"}))
